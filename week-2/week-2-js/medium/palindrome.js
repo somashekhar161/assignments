@@ -4,7 +4,15 @@
 */
 
 function isPalindrome(str) {
-  return true;
-}
+  // regex to match extra char
 
+  const regex = /[ ,!?.]/gi;
+  const cleaned = str.replaceAll(regex, "");
+
+  return (
+    Array.from(cleaned).reverse().join("").toLowerCase() ===
+    cleaned.toLowerCase()
+  );
+}
+console.log(isPalindrome("level"));
 module.exports = isPalindrome;
