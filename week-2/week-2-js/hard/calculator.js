@@ -33,10 +33,22 @@ class Calculator {
     this.result *= num;
   }
   divide(num) {
-    this.result /= num;
+    if (num === 0 || typeof num === "string")
+      throw new Error("invalid division");
+    this.result = this.result / num;
   }
   clear() {
     this.result = 0;
+  }
+  calculate(exp) {
+    exp = exp.replaceAll(" ", "");
+    if (exp.match(/[a-zA-Z ]/gi))
+      throw new Error("expression  contain Alphabets");
+    const res = eval(exp);
+    if (res === Infinity) {
+      throw new Error("Number cannot be divided by ZERO");
+    }
+    this.result = res;
   }
 }
 
